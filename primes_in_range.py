@@ -20,11 +20,11 @@ def main():
         if is_prime:
             counter += 1
 
-        if i < smallest and is_prime:
-            smallest = i
-        
-        if i > largest and is_prime:
-            largest = i
+            if i < smallest:
+                smallest = i
+            
+            if i > largest:
+                largest = i
 
     if counter == 0:
         smallest = largest = None
