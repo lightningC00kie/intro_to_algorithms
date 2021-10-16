@@ -8,11 +8,12 @@ counter2 = 0
 while prod != n:
 # checking if i is a prime number in each iteration of the outer while loop
     if repeat:
-        counter2 += 1
+        
         prime = True
         j = 2           
         
         while j * j <= i:
+            counter2 += 1
             if i % j == 0:
                 prime = False
                 break
