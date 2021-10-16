@@ -9,14 +9,14 @@ while prod != n:
 
     
     prime = True
-    j = 2           
-    
-    while j * j <= i:
-        counter2 += 1
+
+    if i % 2 == 0:
+        prime = False
+    for j in range(3, int(i**0.5)+1, 2):
+        counter2+=1
         if i % j == 0:
             prime = False
             break
-        j += 1
 
 ###########################################
 
