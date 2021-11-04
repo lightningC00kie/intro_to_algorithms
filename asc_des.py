@@ -1,7 +1,6 @@
 def asc_des(a):
     lo = 0
     hi = len(a) - 1
-    mx = 0
     while lo <= hi:
         mid = (lo+hi)//2
         if a[mid-1] < a[mid] > a[mid+1]:
