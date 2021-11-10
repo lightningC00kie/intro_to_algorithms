@@ -90,9 +90,84 @@ def insertion_sort(a):
 # best case: O(n)
 
 
-print(insertion_sort([random.randint(1, 1000) for i in range(50)]))
 
 
 # MERGE SORT
+# SPLIT LIST IN HALF
+# SORT BOTH HALFS RECURSIVELY
+# MERGE THE TWO HALFS
+
+# GIVEN SORTED ARRAYS A AND B, MERGE THEM INTO ARRAY C
+# len(c) = len(a) + len(b)
+def merge(a, b, c):
+    i = j = 0
+    for k in range(len(c)):
+        if i >= len(a):
+            c[k] = b[j]
+            j += 1
+        elif j >= len(b):
+            c[k] = a[i]
+            i += 1
+        elif a[i] < b[j]:
+            c[k] = a[i]
+            i += 1
+        else:
+            c[k] = b[j]
+            j += 1
+
+def mergeSort(a):
+    if len(a) <= 1:
+        return
+
+    mid = len(a) // 2
+    left = a[:mid]
+    right = a[mid:]
+    mergeSort(left)
+    mergeSort(right)
+    merge(left, right, a)
+
+# RUNNING TIME: o(nlogn)
+# MERGE SORT WILL NOT RUN IN PLACE i.e. NEED TO ALLOCATE MORE MEMORY TO RUN IT
 
 
+# QUICK SORT
+# WILL RUN IN PLACE
+
+# PARTITION INTO TWO PIECES
+# p = pivot value
+# Hoare partitioning (lol) <-- slightly more efficient but harder to prove
+# Lomuto partitioning <-- what we'll learn
+# recursively sort both pieces
+
+# Lomuto partitioning
+# choose last element as pivot
+# 
+
+#choose pivot p and partition a[lo:hi] into three regions
+#   a[lo:k]     a[k]   a[k+1:hi]
+#   <== pivot   p      >== pivot
+#   return k
+def partition(a, lo, hi):
+    pivot = a[hi-1]
+    k = lo
+    for i in range(lo, hi):
+        if a[i] <= pivot: # belongs in left partition
+            a[k], a[i] = a[i], a[k]
+            k += 1
+    k -= 1
+    return k
+
+def quickSort(a, lo, hi):
+    if hi - lo <= 1:
+        return
+
+    k = partition(a, lo, hi)
+    quickSort(a, lo, k)
+    quickSort(a, k+1, hi)
+    
+def quick(a):
+    quickSort(a, 0, len(a))
+
+# best case: O(nlogn) but runs faster than merge sort because it runs in place
+# worst case: O(n^2)
+# because pivot is always the last or first element and so the algorithm will try to recursively sort only one partition.
